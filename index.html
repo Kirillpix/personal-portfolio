@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anton Sarychev - AI/LLM Developer specializing in autonomous agents, RAG systems, local LLM integrations and intelligent automation.">
+    <meta name="keywords" content="AI Developer, LLM Developer, Python Engineer, Autonomous AI Agents, RAG Systems, LangChain, LlamaIndex">
+    <meta name="author" content="Anton Sarychev">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anton Sarychev | AI/LLM Developer">
+    <meta property="og:description" content="Building production-ready AI solutions: autonomous agents, RAG systems, local LLM integrations and intelligent automation.">
+    <meta property="og:image" content="https://og-image.vercel.app/Anton%20Sarychev%20-%20AI%2FLLM%20Developer.png">
+    
+    <title>Anton Sarychev | AI/LLM Developer | Python Engineer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00f3ff',
+                        'neon-purple': '#bc13fe',
+                        'neon-cyan': '#0affc2',
+                        'dark-bg': '#0a0a0f',
+                        'dark-card': '#12121a',
+                        'dark-accent': '#1a1a2e'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 20px rgba(0, 243, 255, 0.3)' },
+                            'to': { boxShadow: '0 0 40px rgba(188, 19, 254, 0.5)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00f3ff, #bc13fe);
+            border-radius: 4px;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00f3ff, #bc13fe, #0affc2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Neon glow effect */
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5),
+                         0 0 20px rgba(0, 243, 255, 0.3),
+                         0 0 30px rgba(188, 19, 254, 0.3);
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Grid pattern background */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Skill badge styles */
+        .skill-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .skill-badge:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 grid-pattern overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-bg/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold gradient-text neon-glow">AS</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">Skills</a>
+                    <a href="#experience" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">Experience</a>
+                    <a href="#projects" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">Projects</a>
+                    <a href="#education" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">Education</a>
+                    <a href="#contact" class="text-gray-300 hover:text-neon-blue transition-colors duration-300">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-neon-blue focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#about" class="text-gray-300 hover:text-neon-blue transition-colors py-2">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-neon-blue transition-colors py-2">Skills</a>
+                    <a href="#experience" class="text-gray-300 hover:text-neon-blue transition-colors py-2">Experience</a>
+                    <a href="#projects" class="text-gray-300 hover:text-neon-blue transition-colors py-2">Projects</a>
+                    <a href="#education" class="text-gray-300 hover:text-neon-blue transition-colors py-2">Education</a>
+                    <a href="#contact" class="text-gray-300 hover:text-neon-blue transition-colors py-2">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-neon-cyan/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="text-center fade-in">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4">
+                    <span class="block text-gray-100">Антон Сарычев</span>
+                    <span class="block gradient-text neon-glow mt-2">Anton Sarychev</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-400 mb-6 code-font">
+                    AI/LLM Developer | Python Engineer | Autonomous AI Agents
+                </p>
+                
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    Building production-ready AI solutions: autonomous agents, RAG systems, 
+                    local LLM integrations and intelligent automation.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="group relative px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg font-semibold text-dark-bg hover:shadow-lg hover:shadow-neon-blue/50 transition-all duration-300 card-hover">
+                        <span class="relative z-10">Get In Touch</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-blue rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    
+                    <a href="#" class="group px-8 py-4 border-2 border-neon-blue/50 rounded-lg font-semibold text-neon-blue hover:bg-neon-blue/10 transition-all duration-300 card-hover flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="mt-20 animate-bounce">
+                    <a href="#about" class="text-gray-400 hover:text-neon-blue transition-colors">
+                        <i class="fas fa-chevron-down text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">About Me</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-in">
+                <div class="space-y-6">
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        I'm a passionate AI/LLM Developer with expertise in building production-ready artificial intelligence solutions. My focus is on creating autonomous agents, implementing RAG systems, integrating local LLMs, and developing intelligent automation tools.
+                    </p>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        With hands-on experience in Python development, machine learning operations, and cutting-edge language models, I bridge the gap between research and real-world applications. I specialize in making AI accessible and practical for business needs.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-6">
+                        <div class="p-4 bg-dark-accent rounded-lg card-hover">
+                            <div class="text-3xl font-bold gradient-text mb-2">3+</div>
+                            <div class="text-gray-400">Years Experience</div>
+                        </div>
+                        <div class="p-4 bg-dark-accent rounded-lg card-hover">
+                            <div class="text-3xl font-bold gradient-text mb-2">10+</div>
+                            <div class="text-gray-400">Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 rounded-2xl blur-2xl"></div>
+                    <div class="relative bg-dark-accent p-8 rounded-2xl border border-white/10">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-100">Core Expertise</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-neon-blue mt-1"></i>
+                                <span class="text-gray-300">Autonomous AI Agents & Multi-Agent Systems</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-neon-purple mt-1"></i>
+                                <span class="text-gray-300">RAG (Retrieval-Augmented Generation) Systems</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-neon-cyan mt-1"></i>
+                                <span class="text-gray-300">Local LLM Integration & Optimization</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-neon-blue mt-1"></i>
+                                <span class="text-gray-300">Model Context Protocol (MCP) Implementation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-neon-purple mt-1"></i>
+                                <span class="text-gray-300">Intelligent Document Processing</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Skills & Technologies</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+                <!-- Languages & Frameworks -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-cyan rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Languages & Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Python (OOP, asyncio)</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Django</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">FastAPI</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Pydantic</span>
+                    </div>
+                </div>
+                
+                <!-- ML & MLOps -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">ML & MLOps</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">PyTorch</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">Hugging Face</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">Docker</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">Ollama</span>
+                    </div>
+                </div>
+                
+                <!-- LLM & NLP -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-lg flex items-center justify-center">
+                            <i class="fas fa-comments text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">LLM & NLP</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">LangChain</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">LlamaIndex</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">OpenAI API</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Gemini API</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">tiktoken</span>
+                    </div>
+                </div>
+                
+                <!-- Databases -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
+                            <i class="fas fa-database text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Databases</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">SQL</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Redis</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">FAISS</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">SQLite</span>
+                    </div>
+                </div>
+                
+                <!-- Data -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Data</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">Pandas</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">NumPy</span>
+                    </div>
+                </div>
+                
+                <!-- Models -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-blue rounded-lg flex items-center justify-center">
+                            <i class="fas fa-robot text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Models</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Gemini 3 Pro</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">GPT-5.2</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Claude 4.5 Sonnet</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Grok-4</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Llama</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/30">Mistral</span>
+                    </div>
+                </div>
+                
+                <!-- Messengers -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-cyan rounded-lg flex items-center justify-center">
+                            <i class="fab fa-telegram text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Messengers</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">python-telegram-bot</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Telethon</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Pyrogram</span>
+                    </div>
+                </div>
+                
+                <!-- Tools -->
+                <div class="p-6 bg-dark-card rounded-xl border border-white/10 card-hover fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center">
+                            <i class="fas fa-tools text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">Git</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">AWS S3</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-purple/30">requests</span>
+                    </div>
+                </div>
+                
+                <!-- Highlight -->
+                <div class="p-6 bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 rounded-xl border border-neon-blue/30 card-hover fade-in md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-lg flex items-center justify-center animate-pulse">
+                            <i class="fas fa-star text-dark-bg text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-100">Specialization</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/50">Local LLMs</span>
+                        <span class="skill-badge px-3 py-1.5 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-cyan/50">MCP (Model Context Protocol)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Experience</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="space-y-8 fade-in">
+                <!-- Pet-project Neuro Employee -->
+                <div class="relative pl-8 border-l-2 border-neon-blue/50 fade-in">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-neon-blue rounded-full border-4 border-dark-bg"></div>
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-100">Pet-project «Neuro Employee for Daily Crypto Content»</h3>
+                            <span class="text-neon-blue code-font mt-2 md:mt-0">2025</span>
+                        </div>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Built fully autonomous 24/7 AI system achieving 7x faster content generation compared to manual workflows.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Python</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Gemini/OpenAI</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">asyncio</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Telethon</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">APScheduler</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Yandex.Crowd -->
+                <div class="relative pl-8 border-l-2 border-neon-purple/50 fade-in">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-neon-purple rounded-full border-4 border-dark-bg"></div>
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-100">Data Quality Evaluator</h3>
+                            <span class="text-neon-purple code-font mt-2 md:mt-0">Yandex.Crowd</span>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed">
+                            Evaluated and ensured data quality for machine learning datasets and AI training pipelines.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Terra AI -->
+                <div class="relative pl-8 border-l-2 border-neon-cyan/50 fade-in">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-neon-cyan rounded-full border-4 border-dark-bg"></div>
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-100">Prompt Engineer</h3>
+                            <span class="text-neon-cyan code-font mt-2 md:mt-0">Terra AI</span>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed">
+                            Designed and optimized prompts for large language models to improve output quality and consistency.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Red Stars -->
+                <div class="relative pl-8 border-l-2 border-neon-blue/50 fade-in">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-neon-blue rounded-full border-4 border-dark-bg"></div>
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-100">Junior Developer</h3>
+                            <span class="text-neon-blue code-font mt-2 md:mt-0">Red Stars</span>
+                        </div>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Created AI calling robot achieving 20x cost reduction compared to traditional call center operations.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Python</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">AI Integration</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Automation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Projects</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <!-- Redmine MCP Agent - Special Highlight -->
+                <div class="md:col-span-2 fade-in">
+                    <div class="relative overflow-hidden bg-gradient-to-br from-neon-blue/10 via-neon-purple/10 to-neon-cyan/10 rounded-2xl border border-neon-blue/30 card-hover">
+                        <div class="absolute top-0 right-0 px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple rounded-bl-lg">
+                            <span class="text-dark-bg font-bold text-sm">★ FEATURED PROJECT</span>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-robot text-3xl text-dark-bg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-3xl font-bold text-gray-100">Redmine MCP Agent</h3>
+                                    <p class="text-neon-blue code-font">Model Context Protocol Implementation</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                                Developed AI agent with local LLMs (Ollama) using Model Context Protocol. Allows AI assistants to fully interact with Redmine tasks, issues and project data through standardized MCP interfaces.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Ollama</span>
+                                <span class="px-4 py-2 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">MCP</span>
+                                <span class="px-4 py-2 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Local LLMs</span>
+                                <span class="px-4 py-2 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Python</span>
+                                <span class="px-4 py-2 bg-dark-accent rounded-lg text-sm text-gray-300 border border-neon-blue/30">Redmine API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- IDP SaaS -->
+                <div class="fade-in">
+                    <div class="bg-dark-card p-8 rounded-2xl border border-white/10 card-hover h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-xl flex items-center justify-center">
+                                <i class="fas fa-file-contract text-2xl text-dark-bg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-100">Intelligent Document Processing (IDP) SaaS</h3>
+                                <p class="text-neon-purple text-sm">Germany Project</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Full architecture from scratch with FastAPI, Azure Document Intelligence, OpenAI + Mistral, achieving >95% accuracy on 20–50 page documents.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">FastAPI</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Azure Document Intelligence</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">OpenAI</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Mistral</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional projects can be added here -->
+                <div class="fade-in">
+                    <div class="bg-dark-card p-8 rounded-2xl border border-white/10 card-hover h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-neon-blue to-neon-cyan rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone-volume text-2xl text-dark-bg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-100">AI Calling Robot</h3>
+                                <p class="text-neon-blue text-sm">Red Stars</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Automated calling system that achieved 20x cost reduction compared to traditional call center operations while maintaining high conversion rates.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Python</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Voice AI</span>
+                            <span class="px-3 py-1 bg-dark-bg rounded-full text-sm text-gray-400">Automation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Hackathons Section -->
+    <section id="education" class="py-20 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Education & Hackathons</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 fade-in">
+                <!-- Education -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-100 flex items-center gap-3">
+                        <i class="fas fa-graduation-cap text-neon-blue"></i>
+                        Education
+                    </h3>
+                    
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-university text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-100">Russian State Agrarian University</h4>
+                                <p class="text-neon-blue code-font text-sm mb-2">Applied Informatics "Artificial Intelligence"</p>
+                                <p class="text-gray-400 text-sm">Expected Graduation: 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chalkboard-teacher text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-100">University of Artificial Intelligence</h4>
+                                <p class="text-neon-cyan code-font text-sm mb-2">"ChatGPT Professional"</p>
+                                <p class="text-gray-400 text-sm">2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-cyan rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-language text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-100">Languages</h4>
+                                <p class="text-gray-300">English — B1 (Intermediate)</p>
+                                <p class="text-gray-400 text-sm">Russian — Native</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hackathons -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-100 flex items-center gap-3">
+                        <i class="fas fa-trophy text-neon-purple"></i>
+                        Hackathons
+                    </h3>
+                    
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-purple to-neon-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-code text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-100">Hackathon 2025</h4>
+                                <p class="text-neon-purple code-font text-sm mb-2">Neuro-assistant for Life Balance Wheel</p>
+                                <p class="text-gray-300 text-sm">Built with Gemini API for personalized life balance tracking and recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-accent p-6 rounded-xl border border-white/10 card-hover">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marked-alt text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-100">GIS'IT 2023</h4>
+                                <p class="text-neon-cyan code-font text-sm mb-2">PredictMap CV Service</p>
+                                <p class="text-gray-300 text-sm">Computer Vision service for geographic information systems and spatial analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Get In Touch</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+                <p class="text-gray-300 mt-6 text-lg max-w-2xl mx-auto">
+                    Interested in collaborating or have a project in mind? Let's connect and discuss how we can build something amazing together.
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto fade-in">
+                <div class="bg-dark-card p-8 rounded-2xl border border-white/10 card-hover">
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <a href="mailto:anton.sarychev@example.com" class="group flex items-center gap-4 p-4 bg-dark-accent rounded-xl border border-white/10 hover:border-neon-blue/50 transition-all duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-cyan rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Email</p>
+                                <p class="text-gray-100 font-medium">anton.sarychev@example.com</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 p-4 bg-dark-accent rounded-xl border border-white/10 hover:border-neon-blue/50 transition-all duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-blue rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fab fa-telegram text-dark-bg text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Telegram</p>
+                                <p class="text-gray-100 font-medium">@yourusername</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <p class="text-gray-300 mb-6">Or connect through social platforms:</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="group w-14 h-14 bg-dark-accent rounded-xl border border-white/10 flex items-center justify-center hover:border-neon-blue/50 hover:scale-110 transition-all duration-300">
+                                <i class="fab fa-github text-2xl text-gray-300 group-hover:text-neon-blue transition-colors"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="group w-14 h-14 bg-dark-accent rounded-xl border border-white/10 flex items-center justify-center hover:border-neon-blue/50 hover:scale-110 transition-all duration-300">
+                                <i class="fab fa-linkedin text-2xl text-gray-300 group-hover:text-neon-blue transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-dark-card border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-gray-400 text-sm">
+                    © 2025 Anton Sarychev. All rights reserved.
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-neon-blue transition-colors flex items-center gap-2">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    
+                    <a href="#" class="text-gray-400 hover:text-neon-blue transition-colors flex items-center gap-2">
+                        <i class="fas fa-download"></i>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6 text-gray-500 text-xs">
+                Built with ❤️ using Tailwind CSS
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark-bg/95');
+            } else {
+                navbar.classList.remove('bg-dark-bg/95');
+            }
+        });
+    </script>
+</body>
+</html>

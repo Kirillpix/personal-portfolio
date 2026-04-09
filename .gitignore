@@ -1,0 +1,1 @@
+Nothing needs to be ignored in this case. The changes only include source/config files (README.md, index.html) without any build artifacts, dependencies, or temporary files that should be ignored.
